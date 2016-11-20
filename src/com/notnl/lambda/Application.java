@@ -1,3 +1,19 @@
+/*
+ * Copyright [2016] [noti0na1]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.notnl.lambda;
 
 import java.util.HashSet;
@@ -12,16 +28,26 @@ public class Application extends Expression {
 
     private Expression arguement;
 
+    /**
+     * @param function
+     * @param arguement
+     */
     public Application(Expression function, Expression arguement) {
         this.function = function;
         this.arguement = arguement;
     }
 
+    /**
+     * @return
+     */
     @Override
     public boolean reducible() {
         return this.function.reducible() || this.arguement.reducible() || this.function instanceof Function;
     }
 
+    /**
+     * @return
+     */
     @Override
     public Expression reduce() {
         if (this.function.reducible()) {
@@ -35,6 +61,9 @@ public class Application extends Expression {
         return this;
     }
 
+    /**
+     * @return
+     */
     @Override
     public Expression deepReduce() {
         Expression app = this.reduce();
@@ -44,39 +73,37 @@ public class Application extends Expression {
         return app;
     }
 
+    /**
+     * @return
+     */
     public Expression getFunction() {
         return function;
     }
 
+    /**
+     * @param function
+     */
     public void setFunction(Expression function) {
         this.function = function;
     }
 
+    /**
+     * @return
+     */
     public Expression getArguement() {
         return arguement;
     }
 
+    /**
+     * @param arguement
+     */
     public void setArguement(Expression arguement) {
         this.arguement = arguement;
     }
 
-    @Override
-    public String abbreviate() {
-        StringBuilder apply = new StringBuilder();
-        if (this.function instanceof Function) {
-            apply.append('(').append(this.function.abbreviate()).append(')');
-        } else {
-            apply.append(this.function.abbreviate());
-        }
-        apply.append(' ');
-        if (this.arguement instanceof Variable) {
-            apply.append(this.arguement.abbreviate());
-        } else {
-            apply.append('(').append(this.arguement.abbreviate()).append(')');
-        }
-        return apply.toString();
-    }
-
+    /**
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder apply = new StringBuilder();
@@ -94,7 +121,12 @@ public class Application extends Expression {
         return apply.toString();
     }
 
-
+    /**
+     * @param expr
+     * @param name
+     * @param repl
+     * @return
+     */
     private static Expression subst(Expression expr, Variable name, Expression repl) {
         if (expr instanceof Variable) {
             if (name.equals(expr)) {
@@ -119,6 +151,11 @@ public class Application extends Expression {
         return null;
     }
 
+    /**
+     * @param name
+     * @param usedNames
+     * @return
+     */
     private static Variable uniqueName(Variable name, Set<Variable> usedNames) {
         if (usedNames.contains(name)) {
             return uniqueName(new Variable(name.getName() + "'"), usedNames);
@@ -127,6 +164,10 @@ public class Application extends Expression {
         }
     }
 
+    /**
+     * @param expr
+     * @return
+     */
     private static Set<Variable> freeVariables(Expression expr) {
         Set<Variable> vars = null;
         if (expr instanceof Variable) {
