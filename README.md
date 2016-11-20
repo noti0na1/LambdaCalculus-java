@@ -52,7 +52,7 @@ System.out.println("fun = " + fun.toString());
 System.out.println("fun2  (reduced) = " + fun2.reduce().toString());
 
 // apply this function
-Expression app = apply(fun, "z);
+Expression app = apply(fun, "z");
 // (λx.(λx.f x) x) z
 System.out.println("app = " + app.toString());
 // f z
