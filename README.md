@@ -1,12 +1,13 @@
 # LambdaCalculus-java
 
-A library implementing lambda calculus in Java.
+A library implementing lambda calculus in Java
 
 ## Information
 
 Lambda calculus (also written as λ-calculus) is a formal system in
 mathematical logic for expressing computation based on function
-abstraction and application using variable binding and substitution.
+abstraction and application using variable binding and substitution 
+(wikipedia).
 
 * What is Lambda Calculus: https://en.wikipedia.org/wiki/Lambda_calculus
 
@@ -20,24 +21,26 @@ meanwhile, recall how to white Java.
 * Easy to write lambda expression
 * It can reduce expression in one step or fully
 * All expression can be pretty-printed
-* Arithmetic, logic and pairs are implemented 
-in [com.notnl.lambda.examples](https://github.com/noti0na1/LambdaCalculus-java/tree/master/src/com/notnl/lambda/example)
+* Arithmetic, logic and pairs are implemented in 
+[com.notnl.lambda.examples](https://github.com/noti0na1/LambdaCalculus-java/tree/master/src/com/notnl/lambda/example)
 
-## How to use
+## How To Use
 
-First you need to add lambda-calculus.jar to your project libraries.
-You can build it from the source.
+First you need to add lambda-calculus.jar to your project libraries. You
+could find it at 
+[release](https://github.com/noti0na1/LambdaCalculus-java/releases).
+You can build it from the source as well.
 
-The best way to create lambda expression is to extend the Lambda class
-and use its handy functions.
+The best way to create lambda expression is to extend the 
+com.notnl.lambda.Lambda class and use its handy functions directly.
 
 ```Java
 public class ExampleUse extends Lambda {
-
+    // use it!
 }
 ```
 
-## Examples
+## Example
 
 ```Java
 // create a variable x
@@ -73,3 +76,10 @@ See more examples in [com.notnl.lambda.examples](https://github.com/noti0na1/Lam
 * add more comments
 * add documents
 * ...
+
+## Report A Problem
+
+Feel free to report mistakes I made or give suggestions at 
+[GitHub Issue](https://github.com/noti0na1/LambdaCalculus-java/issues).
+
+I am also glad to talk about lambda with me.
