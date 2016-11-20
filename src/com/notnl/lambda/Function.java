@@ -17,7 +17,7 @@
 package com.notnl.lambda;
 
 /**
- *
+ * A lambda function
  */
 public class Function extends Expression {
 

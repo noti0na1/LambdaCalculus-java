@@ -20,21 +20,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by noti0 on 2016/11/18.
+ * An application
+ * apply a function with certain argument
  */
 public class Application extends Expression {
 
     private Expression function;
 
-    private Expression arguement;
+    private Expression argument;
 
     /**
      * @param function
-     * @param arguement
+     * @param argument
      */
-    public Application(Expression function, Expression arguement) {
+    public Application(Expression function, Expression argument) {
         this.function = function;
-        this.arguement = arguement;
+        this.argument = argument;
     }
 
     /**
@@ -42,7 +43,7 @@ public class Application extends Expression {
      */
     @Override
     public boolean reducible() {
-        return this.function.reducible() || this.arguement.reducible() || this.function instanceof Function;
+        return this.function.reducible() || this.argument.reducible() || this.function instanceof Function;
     }
 
     /**
@@ -51,12 +52,12 @@ public class Application extends Expression {
     @Override
     public Expression reduce() {
         if (this.function.reducible()) {
-            return new Application(this.function.reduce(), this.arguement);
-        } else if (this.arguement.reducible()) {
-            return new Application(this.function, this.arguement.reduce());
+            return new Application(this.function.reduce(), this.argument);
+        } else if (this.argument.reducible()) {
+            return new Application(this.function, this.argument.reduce());
         } else if (this.function instanceof Function) {
             Function fun = (Function) this.getFunction();
-            return subst(fun.getBody(), fun.getName(), this.getArguement());
+            return subst(fun.getBody(), fun.getName(), this.getargument());
         }
         return this;
     }
@@ -90,15 +91,15 @@ public class Application extends Expression {
     /**
      * @return
      */
-    public Expression getArguement() {
-        return arguement;
+    public Expression getargument() {
+        return argument;
     }
 
     /**
-     * @param arguement
+     * @param argument
      */
-    public void setArguement(Expression arguement) {
-        this.arguement = arguement;
+    public void setargument(Expression argument) {
+        this.argument = argument;
     }
 
     /**
@@ -113,15 +114,17 @@ public class Application extends Expression {
             apply.append(this.function.toString());
         }
         apply.append(' ');
-        if (this.arguement instanceof Variable) {
-            apply.append(this.arguement);
+        if (this.argument instanceof Variable) {
+            apply.append(this.argument);
         } else {
-            apply.append('(').append(this.arguement).append(')');
+            apply.append('(').append(this.argument).append(')');
         }
         return apply.toString();
     }
 
     /**
+     * substitute variable in expression with replacement
+     *
      * @param expr
      * @param name
      * @param repl
@@ -138,7 +141,7 @@ public class Application extends Expression {
             Application app = (Application) expr;
             return new Application(
                     subst(app.getFunction(), name, repl),
-                    subst(app.getArguement(), name, repl));
+                    subst(app.getargument(), name, repl));
         } else if (expr instanceof Function) {
             Function fun = (Function) expr;
             Set<Variable> fvs = freeVariables(repl);
@@ -152,6 +155,8 @@ public class Application extends Expression {
     }
 
     /**
+     * get unique name
+     *
      * @param name
      * @param usedNames
      * @return
@@ -165,6 +170,8 @@ public class Application extends Expression {
     }
 
     /**
+     * get all free variables
+     *
      * @param expr
      * @return
      */
@@ -176,7 +183,7 @@ public class Application extends Expression {
         } else if (expr instanceof Application) {
             Application app = (Application) expr;
             vars = freeVariables(app.getFunction());
-            vars.addAll(freeVariables(app.getArguement()));
+            vars.addAll(freeVariables(app.getargument()));
         } else if (expr instanceof Function) {
             Function fun = (Function) expr;
             vars = freeVariables(fun.getBody());

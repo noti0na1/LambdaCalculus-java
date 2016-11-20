@@ -20,7 +20,7 @@ import com.notnl.lambda.Expression;
 import com.notnl.lambda.Lambda;
 
 /**
- * Created by noti0 on 2016/11/19.
+ * Show how to implement pairs using lambda
  */
 public class ExamplePairs extends Lambda {
 
@@ -29,15 +29,19 @@ public class ExamplePairs extends Lambda {
         Expression False = λ("x", λ("y", "y"));
         Expression ite = λ("cond", λ("then", λ("else", apply(apply("cond", "then"), "else"))));
 
+        // λx.λy.λp.p x y
         Expression cons = λ("x", λ("y", λ("p", apply(apply("p", "x"), "y"))));
         System.out.println("cons = " + cons);
 
+        // λx.x (λx.λy.x)
         Expression car = λ("x", apply("x", True));
         System.out.println("car = " + car);
 
+        // λx.x (λx.λy.y)
         Expression cdr = λ("x", apply("x", False));
         System.out.println("cdr = " + cdr);
 
+        // λp.p left right
         Expression myCons = apply(apply(cons, "left"), "right");
         System.out.println("myCons = " + myCons.deepReduce());
         System.out.println("myCons-car = " + apply(car, myCons).deepReduce());

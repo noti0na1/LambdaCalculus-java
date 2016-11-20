@@ -17,7 +17,8 @@
 package com.notnl.lambda;
 
 /**
- * Created by noti0 on 2016/11/18.
+ * A variable
+ * its name should be String
  */
 public class Variable extends Expression {
 

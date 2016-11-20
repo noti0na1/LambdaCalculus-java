@@ -17,11 +17,13 @@
 package com.notnl.lambda;
 
 /**
- * Created by noti0 on 2016/11/18.
+ * A useful class to create lambda expression
  */
 public class Lambda {
 
     /**
+     * create a variable
+     *
      * @param name
      * @return
      */
@@ -30,6 +32,8 @@ public class Lambda {
     }
 
     /**
+     * create a lambda function
+     *
      * @param name
      * @param body
      * @return
@@ -39,6 +43,8 @@ public class Lambda {
     }
 
     /**
+     * create a lambda function
+     *
      * @param name
      * @param body
      * @return
@@ -48,6 +54,8 @@ public class Lambda {
     }
 
     /**
+     * create a lambda function
+     *
      * @param name
      * @param body
      * @return
@@ -57,6 +65,8 @@ public class Lambda {
     }
 
     /**
+     * create a lambda function
+     *
      * @param name
      * @param body
      * @return
@@ -75,6 +85,8 @@ public class Lambda {
     }
 
     /**
+     * create a lambda function
+     *
      * @param name
      * @param body
      * @return
@@ -84,38 +96,46 @@ public class Lambda {
     }
 
     /**
+     * apply a function with argument
+     *
      * @param function
-     * @param arguement
+     * @param argument
      * @return
      */
-    public static Application apply(String function, String arguement) {
-        return new Application(new Variable(function), new Variable(arguement));
+    public static Application apply(String function, String argument) {
+        return new Application(new Variable(function), new Variable(argument));
     }
 
     /**
+     * apply a function with argument
+     *
      * @param function
-     * @param arguement
+     * @param argument
      * @return
      */
-    public static Application apply(String function, Expression arguement) {
-        return new Application(new Variable(function), arguement);
+    public static Application apply(String function, Expression argument) {
+        return new Application(new Variable(function), argument);
     }
 
     /**
+     * apply a function with argument
+     *
      * @param function
-     * @param arguement
+     * @param argument
      * @return
      */
-    public static Application apply(Expression function, String arguement) {
-        return new Application(function, new Variable(arguement));
+    public static Application apply(Expression function, String argument) {
+        return new Application(function, new Variable(argument));
     }
 
     /**
+     * apply a function with argument
+     *
      * @param function
-     * @param arguement
+     * @param argument
      * @return
      */
-    public static Application apply(Expression function, Expression arguement) {
-        return new Application(function, arguement);
+    public static Application apply(Expression function, Expression argument) {
+        return new Application(function, argument);
     }
 }

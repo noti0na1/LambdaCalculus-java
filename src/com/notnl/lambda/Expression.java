@@ -17,27 +17,34 @@
 package com.notnl.lambda;
 
 /**
- * Created by noti0 on 2016/11/18.
+ * An Expression
  */
 public abstract class Expression {
 
     /**
+     * return if it can be reduced
+     *
      * @return
      */
     public abstract boolean reducible();
 
     /**
+     * reduce it for one step
+     *
      * @return
      */
     public abstract Expression reduce();
 
     /**
+     * fully reduce it
+     * caution: this may cause infinite loop
+     *
      * @return
      */
     public abstract Expression deepReduce();
 
     /**
-     *
+     * display reduce steps
      */
     public void printReduceSteps() {
         System.out.println(this.toString());
@@ -47,7 +54,9 @@ public abstract class Expression {
     }
 
     /**
-     * @param n
+     * display certain reduce steps
+     *
+     * @param n number of steps
      */
     public void printReduceSteps(int n) {
         if (n == 0) {
