@@ -1,6 +1,10 @@
-# LambdaCalculus-java
+# Lambda Calculus in Java
 
 A library implementing lambda calculus in Java
+
+
+
+[TOC]
 
 ## Information
 
@@ -21,8 +25,7 @@ meanwhile, recall how to white Java.
 * Easy to write lambda expression
 * It can reduce expression in one step or fully
 * All expression can be pretty-printed
-* Arithmetic, logic and pairs are implemented in 
-[com.notnl.lambda.examples](https://github.com/noti0na1/LambdaCalculus-java/tree/master/src/com/notnl/lambda/example)
+* Arithmetic, logic and pairs are implemented in  [com.notnl.lambda.examples](https://github.com/noti0na1/LambdaCalculus-java/tree/master/src/com/notnl/lambda/example)
 
 ## How To Use
 
@@ -34,7 +37,7 @@ You can build it from the source as well.
 The best way to create lambda expression is to extend the 
 com.notnl.lambda.Lambda class and use its handy functions directly.
 
-```Java
+```java
 public class ExampleUse extends Lambda {
     // use it!
 }
@@ -42,7 +45,7 @@ public class ExampleUse extends Lambda {
 
 ## Example
 
-```Java
+```java
 // create a variable x
 Expression x = var("x");
 System.out.println("x = " + x.toString());
@@ -52,7 +55,7 @@ Expression fun = λ("x", apply(λ("x", apply("f", "x")), "x"));
 // λx.(λx.f x) x
 System.out.println("fun = " + fun.toString());
 // λx.f x
-System.out.println("fun2  (reduced) = " + fun2.reduce().toString());
+System.out.println("fun  (reduced) = " + fun.reduce().toString());
 
 // apply this function
 Expression app = apply(fun, "z");
@@ -79,7 +82,6 @@ See more examples in [com.notnl.lambda.examples](https://github.com/noti0na1/Lam
 
 ## Report A Problem
 
-Feel free to report mistakes I made or give suggestions at 
-[GitHub Issue](https://github.com/noti0na1/LambdaCalculus-java/issues).
+Feel free to report mistakes I made or give suggestions at  [GitHub Issue](https://github.com/noti0na1/LambdaCalculus-java/issues).
 
 I am also glad to talk about lambda with me.
